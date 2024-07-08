@@ -1,0 +1,23 @@
+from utils import unzip_with_7z
+import string
+
+zip_file_path = 'congrats.7z'  # keep as is
+dest_path = '.'  # keep as is
+
+# Define the base password part
+base_password = 'bcmpda'
+
+# Generate all possible combinations of two lowercase letters
+letters = string.ascii_lowercase
+
+# Try each combination
+for first_letter in letters:
+    for second_letter in letters:
+        find_me = first_letter + second_letter
+        secret_password = find_me + base_password
+        if unzip_with_7z(zip_file_path, dest_path, secret_password):
+            print(f"The password is: {secret_password}")
+            break
+    else:
+        continue
+    break
